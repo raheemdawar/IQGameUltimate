@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>IQ Games - Sudoku</title>
+    <link href="~/Content/sudoku/css/sudoku-style.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/sudoku/css/animate.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+
+</head>
+
+<body>
+    <div id="header" class="header" style="float:left;"><a href="/quiz/index">Back</a></div>
+    <div id="header" class="header">Sudoku</div>
+
+    <div id="welcome" class="welcome">
+        <h1>sudoku</h1>
+
+        <button onclick="Sudoku.game.init()">new game</button>
+    </div>
+
+    <div id="game-message" class="game-message"></div>
+
+    <div id="number-picker" class="number-picker"></div>
+
+    <div id="solving-status" class="solving-status"></div>
+
+    <div id="board" class="board"></div>
+
+    <div id="buttons" class="buttons">
+        <button id="start-button" class="start" onclick="Sudoku.game.init()">start new game</button>
+        <button id="solve-button" class="solve" onclick="Sudoku.game.validateBeforeSolve()">solve board</button>
+    </div>
+
+    <script type="text/javascript" src="~/Content/sudoku/js/jquery.js"></script>
+    <script type="text/javascript" src="~/Content/sudoku/js/underscore.js"></script>
+    <script type="text/javascript" src="~/Content/sudoku/js/sudoku.js"></script>
+
+</body>
+
+</html>

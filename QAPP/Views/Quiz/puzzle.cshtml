@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Search Game - IQ Games</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="~/Content/puzzle/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/puzzle/jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript" src="~/Content/puzzle/jquery.wordsearchgame.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/puzzle/jquery.wordsearchgame.css">
+
+    <script>
+		$(document).ready( function () {
+			var words = "earth,mars,mercury,neptune,pluto,saturn,jupiter,one,two,"+
+						"three,four,five,six,seven,eight,mozart,bach,meyer,rose,mahler";
+
+			//attach the game to a div
+			$("#theGrid").wordsearchwidget(
+				{"wordlist" : words,
+				"gridsize" : 10,
+				"onWordFound" : function(ob){
+					$('#onWordFound').html("Found: " + ob.word);
+					d = setTimeout(function(){
+						clearTimeout(d);
+						$('#onWordFound').html(" ");
+					},3000);
+
+				},
+				"onWordSearchComplete" :function(){
+					$('#onWordSearchComplete').html("Word Search Complete");
+				}
+			});
+		});
+
+
+    </script>
+
+</head>
+<body style="padding-top:100px;margin-left:400px;">
+    <a href="/quiz/index"><h4>Back</h4> </a>
+    <br />
+    <br />
+    <h2 style="margin-left:120px;">Word Search Game</h2>
+    <div id="theGrid"></div>
+    <div id="onWordSearchComplete"></div>
+    <div id="onWordFound"></div>
+</body>
+</html>
+

@@ -1,0 +1,389 @@
+@import _sass_globals.sass
+
+//
+// Styles Below
+//
+
+/* Body Style
+//
+
+body
+ font-family: $roboto
+ color: $roboto-color
+ font-size: $roboto-size
+
+
+/* Shared Styles
+//
+
+.buttons,
+.header 
+ display: block
+ text-align: center
+
+
+/* Header element
+//
+
+.header
+ font-family: $roboto
+ font-size: $grid * 4
+ font-weight: $roboto-weight
+
+ /* Smart Phone styles
+ @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+  font-size: $smart-phone-font-large
+  margin-top: $grid * 8
+  margin-bottom: $grid * 8
+
+ /* Tablet styles
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  font-size: $smart-phone-font-large
+
+ /* Tablet styles (landscape)
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape)  
+  font-size: $med-tab-font
+
+
+/* Main Buttons (Start game & Solve game)
+//
+
+.buttons button
+ border: $border-and-radius solid $sudokblue
+ border-radius: $border-and-radius
+ cursor: pointer
+ font-family: $roboto
+ font-weight: $roboto-weight
+ font-size: $roboto-size
+ padding: $grid 
+ +none-appearance(none)
+
+ /* Smart Phone styles
+ @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+  font-size: $smart-phone-font
+  padding: $four-grid $double-grid
+
+ /* Tablet styles
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  font-size: $med-tab-font
+ 
+ /* Tablet styles (landscape)
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape)  
+  font-size: $med-tab-font / 2
+
+button.start 
+ background-color: $sudokblue
+ color: $light-text
+
+button.solve 
+ background-color: $light-text
+ color: $sudokblue
+ 
+
+/* Board styles
+//
+
+.board
+ background-color: #E9E9E9
+ box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1)
+ display: table
+ margin: $four-grid auto
+ text-align: center
+
+
+/* Board square row (row of n squares)
+//
+
+.board .square-row
+ display: block
+ width: auto
+
+
+/* Board square inner row (row of n cells within a square)
+//
+
+.board .square-inner-row 
+ display: block
+ width: auto
+
+.board span 
+ border: 2px solid #5C85C2
+ display: inline-block
+
+.board span label 
+ display: inline-block
+ height: $four-grid
+ width: $four-grid
+ padding: $grid / 2
+ vertical-align: text-bottom
+ border: $border-and-radius solid #5c85c2
+ line-height: $four-grid
+
+ /* Smart Phone styles
+ @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+  font-size: $smart-phone-font
+  height: $grid * 8.375
+  padding: $grid * 1.5
+  width: $grid * 8.375
+  line-height: $grid * 9
+ 
+ /* Tablet styles
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  font-size: $med-tab-font
+  height: $grid * 7
+  padding: $grid
+  width: $grid * 7
+  line-height: $grid * 7
+
+ /* Tablet styles (landscape)
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) 
+  font-size: $med-tab-font / 2
+  height: $four-grid
+  padding: $grid 
+  width: $four-grid
+  line-height: $four-grid
+ 
+.board span label.discovered-auto 
+ background-color: rgba(0,0,0,.07)
+ 
+.currently-updating
+ background-color: rgba(143, 145, 148, 0.79)
+ color: $light-text
+
+.discovered-auto
+ color: #8D8686
+ font-weight: bold
+
+.invalid-cell
+ background-color: rgb(209, 118, 118)
+ color: $light-text
+
+
+/* Number Picker and Game Message element styles
+//
+
+.number-picker,
+.game-message
+ border: none
+ border-radius: $border-and-radius
+ padding: $grid
+ position: fixed
+ left: 26%
+ right: 26%
+ text-align: center
+
+ /* Smart Phone styles
+ @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+  left: 0
+  right: 0
+  top: 0
+
+.game-message
+ top: $four-grid
+ background-color: $message-red
+ color: $light-text
+
+ /* Smart Phone styles
+ @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+  font-size: $grid * 6
+
+ /* Tablet styles
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  font-size: $med-tab-font
+  left: 16%
+  right: 16%
+  top: $double-grid
+
+ /* Tablet styles (landscape)
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation: landscape)  
+  font-size: $med-tab-font / 2
+  left: 26%
+  right: 26%
+
+ span
+  cursor: pointer
+  margin-left: $grid
+  opacity: 0.7
+  text-decoration: underline
+
+.number-picker
+ background-color: $sudokblue
+ top: $double-grid
+ 
+ /* Smart Phone styles
+ @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+  top: $double-grid
+ 
+ /* Tablet styles
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  font-size: $med-tab-font
+  left: 10%
+  right: 10%
+
+ /* Tablet styles (landscape)
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation: landscape)
+  font-size: $med-tab-font / 2
+  left: 16%
+  right: 16%
+  top: $double-grid
+
+ button
+  background-color: white
+  border: $border-and-radius solid DCDCDC
+  border-radius: $border-and-radius
+  cursor: pointer
+  color: #464444
+  display: inline-block
+  font-family: $roboto
+  font-weight: 300
+  padding: $grid $double-grid
+  +none-appearance(none)
+
+  /* Smart Phone styles
+  @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+   font-size: $grid * 6
+
+  /* Tablet styles
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+   font-size: $med-tab-font
+ 
+  /* Tablet styles (landscape)
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation: landscape)
+   font-size: $med-tab-font / 2
+
+ button:hover
+  opacity: 0.9
+
+
+/* Solving Status message element
+//
+
+.solving-status
+ background-color: $sudokblue
+ border-radius: $border-and-radius
+ box-shadow: 0 0 $grid $shadow-color
+ color: $light-text
+ display: none
+ padding: $four-grid
+ position: fixed
+ left: 40%
+ right: 40%
+ top: 25%
+
+ /* Smart Phone styles
+ @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+  font-size: $grid * 7
+  left: 10%
+  padding: $grid * 6
+  right: 10%
+  
+
+ /* Tablet styles
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  font-size: $med-tab-font
+  left: 25%
+  right: 25%
+  text-align: center
+
+ /* Tablet styles (landscape)
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation: landscape)
+  font-size: $med-tab-font / 2
+  left: 15%
+  right: 15%
+  text-align: center
+
+ span
+  display: block
+  background-color: $light-text
+  border-radius: $border-and-radius
+  color: $sudokblue
+  cursor: pointer
+  margin: 0 auto
+  margin-top: $grid * 4
+  padding: $grid ($grid / 2)
+  text-align: center
+  width: 80%
+  
+.solving-status.invisible
+ top: -($grid * 10)
+
+/* Welcome message
+//
+
+.welcome
+ display: none
+ position: fixed
+ background-color: $welcome-yellow
+ top: 20%
+ left: 35%
+ right: 35%
+ padding: $four-grid
+ text-align: center
+ border-radius: $border-and-radius
+ box-shadow: $shadow-color
+ font-weight: $roboto-weight
+
+ /* Smart Phone styles
+ @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+  bottom: 5%
+  top: 5%
+  left: 5%
+  right: 5%
+  border: 5px solid #777474
+
+ /* Tablet styles
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px)
+  top: 20%
+  left: 20%
+  right: 20%
+  border: 2px solid #777474
+
+
+ h1,
+ h2,
+ button
+  font-weight: $roboto-weight
+  color: $light-text
+
+ /* Smart Phone styles
+ @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+  font-size: $four-grid
+
+ h1
+  font-size: $four-grid
+
+  /* Smart Phone styles
+  @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+   font-size: $four-grid * 4
+   padding: 0
+   margin: 0
+   margin-top: $four-grid * 8
+
+ button
+  font-weight: 300
+  display: inline
+  +none-appearance(none)
+  background-color: $light-text
+  border: $border-and-radius solid $light-text
+  padding: $double-grid $four-grid
+  border-radius: $border-and-radius
+  color: $welcome-yellow
+  font-family: "Roboto Slab", sans-serif
+  font-size: 22px
+  cursor: pointer
+  transition: all 0.2s
+
+  /* Smart Phone styles
+  @media only screen and (min-device-width : 320px) and (max-device-width : 568px)
+   padding: $four-grid ($four-grid * 2)
+   font-size: $four-grid * 2
+   margin-top: $four-grid
+
+ button:hover
+  background-color: $welcome-yellow
+  color: $light-text
+
+ a,
+ a:visited,
+ a:hover
+  color: $light-text

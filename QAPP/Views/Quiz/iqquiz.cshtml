@@ -1,0 +1,169 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script>
+        const STORE = [
+            {
+                question: 'What is one of the most important principles to follow when backpacking or camping?',
+                answers: [
+                    'Always remeber to take advantage of what nature has to offer',
+                    'Leave no trace',
+                    'Moss always grows on the north side of a rock',
+                    'Be as loud as you want to outdoors because that\'s what adventure is all about'
+                ],
+                correctAnswer: 'Leave no trace'
+            },
+            {
+                question: 'What are the 10 essentials for backpacking or camping?',
+                answers: [
+                    'Entertainment | Food | Tent | Cell Phone | Water Guns | Your pet | Cooler | Cooking utensils | Clothing | Portable sound system',
+                    'Cell phone | Junk food | binoculars | sunglasses | pepper spray | ice | Sleeping bag | Camera | Enertainment | Water',
+                    'Navigation | Sun protection | Insulation | First-aid supplies | Fire | Repair kit and tools | Nutrition | Hydration | Emergency Shelter',
+                    'GPS | Sunglasses | Tent | Hydration | Enertainment | Insulation | Bandages | Cooler | Tools | Books'
+                ],
+                correctAnswer: 'Navigation | Sun protection | Insulation | First-aid supplies | Fire | Repair kit and tools | Nutrition | Hydration | Emergency Shelter'
+            },
+            {
+                question: 'When backpacking what is the weight you should aim for when packing your backpack?',
+                answers: [
+                    '25 lbs',
+                    '50 lbs',
+                    '70 lbs',
+                    '100 lbs'
+                ],
+                correctAnswer: '25 lbs'
+            },
+            {
+                question: 'You are camping in bear country. How should you store your food?',
+                answers: [
+                    'Bears are a myth. There\'s no need to worry about them',
+                    'Always store your food on you person at all times.',
+                    'Store your food in your tent',
+                    'Always use a bear canistern or hang your food and personal hygiene items on a tree limb in a bear backpacking'
+                ],
+                correctAnswer: 'Always use a bear canistern or hang your food and personal hygiene items on a tree limb in a bear backpacking'
+            },
+            {
+                question: 'What should you never day hike without?',
+                answers: [
+                    'Extra food',
+                    'Hat',
+                    'GPS',
+                    'Cell phone'
+                ],
+                correctAnswer: 'Extra food'
+            },
+            {
+                question: 'You forgot your water filter in the backcountry. What should you do?',
+                answers: [
+                    'Just drink straight from the stream',
+                    'Drink your own urine',
+                    'Find a water source and boil the water to neutralize it',
+                    'Don\'t drink any water'
+                ],
+                correctAnswer: 'Find a water source and boil the water to neutralize it'
+            },
+            {
+                question: 'What is the safest way to cross a stream while hiking?',
+                answers: [
+                    'Find flat rocks to hop across on',
+                    'Look for the deepest section and cross there',
+                    'Avoid acrossing where the current is strong. Look for a straight, wide, and shallow section.',
+                    'Always follow the marked route no matter what'
+                ],
+                correctAnswer: 'Avoid acrossing where the current is strong. Look for a straight, wide, and shallow section.'
+            },
+            {
+                question: 'While hiking you get lost. What should you do now?',
+                answers: [
+                    'Stay put and wait for someone to find you',
+                    'Follow streams or rivers. They will eventually lead to roads',
+                    'Take off running in one direction. you will eventually hit a trail.',
+                    'Eat all of your food now to get the most energy that you can.'
+                ],
+                correctAnswer: 'Stay put and wait for someone to find you'
+            },
+            {
+                question: 'You just spotted a black bear while hiking. What should you do now?',
+                answers: [
+                    'Play dead',
+                    'Throw your food at the bear so that it will be distracted',
+                    'Approach the bear. It might want to be friends with you!',
+                    'If you spot the bear before it spots you, back away keeping your eyes on the bear and wait for it to pass before continuing on.'
+                ],
+                correctAnswer: 'If you spot the bear before it spots you, back away keeping your eyes on the bear and wait for it to pass before continuing on.'
+            },
+            {
+                question: 'What is the most dangerous animal in the wilderness?',
+                answers: [
+                    'Grizzly bears',
+                    'Birds',
+                    'Insects',
+                    'Humanbeings'
+                ],
+                correctAnswer: 'Humanbeings'
+            }
+        ];
+    </script>
+</head>
+
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/quiz/Index">Quiz App</a></h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="btn btn-outline-primary">Remaining Time: <span id="timer"></span></a>
+            <a class="btn btn-outline-primary">Question: <span class="question-number">0</span>/10</a>
+            <a class="btn btn-outline-primary">Correct:  <span class="total-right">0</span></a>
+            <a class="btn btn-outline-primary">Incorrect: <span class="total-wrong">0</span></a>
+        </nav>
+    </div>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center quizStart">
+        <h1 class="display-4">Let's get started!</h1>
+        <p class="lead">This is a cool quiz.</p>
+        <button type="button" class="btn btn-lg btn-outline-primary startButton">Start Quiz</button>
+    </div>
+    <div class="container">
+        <div class="card-deck mb-3 text-center">
+            <div class="question-body"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/QuizJs.js"></script>
+</body>
+</html>
+<script>
+
+    document.getElementById('timer').innerHTML =
+        05 + ":" + 00;
+    startTimer();
+
+    function startTimer() {
+        var presentTime = document.getElementById('timer').innerHTML;
+        var timeArray = presentTime.split(/[:]+/);
+        var m = timeArray[0];
+        var s = checkSecond((timeArray[1] - 1));
+        if (s == 59) { m = m - 1 }
+        //if(m<0){alert('timer completed')}
+
+        document.getElementById('timer').innerHTML =
+            m + ":" + s;
+        setTimeout(startTimer, 1000);
+    }
+
+    function checkSecond(sec) {
+        if (sec < 10 && sec >= 0) { sec = "0" + sec }; // add zero in front of numbers < 10
+        if (sec < 0) { sec = "59" };
+        return sec;
+    }
+</script>
