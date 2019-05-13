@@ -4,7 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="iqwebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="iqwebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="quizname" Type="nvarchar" MaxLength="100" />
+          <Property Name="marks" Type="nvarchar" MaxLength="50" />
+          <Property Name="true" Type="nvarchar" MaxLength="50" />
+          <Property Name="false" Type="nvarchar" MaxLength="50" />
+          <Property Name="fk_studentid" Type="int" />
+        </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="id" />
@@ -15,11 +26,27 @@
           <Property Name="password" Type="nvarchar" MaxLength="50" />
           <Property Name="isActive" Type="bit" />
         </EntityType>
+        <Association Name="FK_Quiz_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+          <End Role="Quiz" Type="Self.Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="fk_studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="iqwebModelStoreContainer">
+          <EntitySet Name="Quiz" EntityType="Self.Quiz" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Quiz_Student" Association="Self.FK_Quiz_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Quiz" EntitySet="Quiz" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="iqwebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -32,16 +59,46 @@
           <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="Quizs" Relationship="iqwebModel.FK_Quiz_Student" FromRole="Student" ToRole="Quiz" />
         </EntityType>
-        <EntityContainer Name="IqwebEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="iqwebEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Quizs" EntityType="iqwebModel.Quiz" />
+          <AssociationSet Name="FK_Quiz_Student" Association="iqwebModel.FK_Quiz_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Quiz" EntitySet="Quizs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Quiz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="quizname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="marks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="true" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="false" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fk_studentid" Type="Int32" />
+          <NavigationProperty Name="Student" Relationship="iqwebModel.FK_Quiz_Student" FromRole="Quiz" ToRole="Student" />
+        </EntityType>
+        <Association Name="FK_Quiz_Student">
+          <End Type="iqwebModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="iqwebModel.Quiz" Role="Quiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Quiz">
+              <PropertyRef Name="fk_studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="iqwebModelStoreContainer" CdmEntityContainer="IqwebEntities">
+        <EntityContainerMapping StorageEntityContainer="iqwebModelStoreContainer" CdmEntityContainer="iqwebEntities">
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="iqwebModel.Student">
               <MappingFragment StoreEntitySet="Student">
@@ -50,6 +107,18 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Quizs">
+            <EntityTypeMapping TypeName="iqwebModel.Quiz">
+              <MappingFragment StoreEntitySet="Quiz">
+                <ScalarProperty Name="fk_studentid" ColumnName="fk_studentid" />
+                <ScalarProperty Name="false" ColumnName="false" />
+                <ScalarProperty Name="true" ColumnName="true" />
+                <ScalarProperty Name="marks" ColumnName="marks" />
+                <ScalarProperty Name="quizname" ColumnName="quizname" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

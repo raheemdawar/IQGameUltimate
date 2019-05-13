@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="iqwebModelStoreContainer" CdmEntityContainer="IqwebEntities">
+  <EntityContainerMapping StorageEntityContainer="iqwebModelStoreContainer" CdmEntityContainer="iqwebEntities">
     <EntitySetMapping Name="Students">
       <EntityTypeMapping TypeName="iqwebModel.Student">
         <MappingFragment StoreEntitySet="Student">
@@ -9,6 +9,18 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quizs">
+      <EntityTypeMapping TypeName="iqwebModel.Quiz">
+        <MappingFragment StoreEntitySet="Quiz">
+          <ScalarProperty Name="fk_studentid" ColumnName="fk_studentid" />
+          <ScalarProperty Name="false" ColumnName="false" />
+          <ScalarProperty Name="true" ColumnName="true" />
+          <ScalarProperty Name="marks" ColumnName="marks" />
+          <ScalarProperty Name="quizname" ColumnName="quizname" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

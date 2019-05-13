@@ -1,0 +1,42 @@
+﻿@model IEnumerable<QAPP.DB.Quiz>
+
+@{
+    ViewBag.Title = "account";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>Account</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.quizname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.marks)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Student.username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.quizname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.marks)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.username)
+        </td>
+       
+    </tr>
+}
+
+</table>

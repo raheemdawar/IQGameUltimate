@@ -173,6 +173,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DB\Quiz.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\Student.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -320,8 +323,8 @@
     <Content Include="Content\vendor\wow\wow.min.js" />
     <Content Include="DB\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DB\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -492,6 +495,10 @@
     <Content Include="Views\Quiz\logicalquiz.cshtml" />
     <Content Include="Views\Quiz\commonsence.cshtml" />
     <Content Include="Views\Quiz\puzzle.cshtml" />
+    <Content Include="Views\Quiz\categories.cshtml" />
+    <Content Include="Views\Quiz\educationalquizs.cshtml" />
+    <Content Include="Views\Quiz\gamequizs.cshtml" />
+    <Content Include="Views\Quiz\account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

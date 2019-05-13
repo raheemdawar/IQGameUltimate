@@ -10,7 +10,7 @@ namespace QAPP.Controllers
     public class HomeController : Controller
     {
 
-        IqwebEntities _db = new IqwebEntities();
+        iqwebEntities _db = new iqwebEntities();
         public ActionResult Index()
         {
             return View();
@@ -28,7 +28,7 @@ namespace QAPP.Controllers
                     if( student.password.Equals(password))
                     {
                         Session["student"] = student;
-                        return RedirectToAction("index", "Quiz");
+                        return RedirectToAction("categories", "Quiz");
                     }
                 }
             }
@@ -64,7 +64,7 @@ namespace QAPP.Controllers
                     _db.Students.Add(newStudent);
                     _db.SaveChanges();
                     Session["student"] = student;
-                    return RedirectToAction("index", "Quiz");
+                    return RedirectToAction("categories", "Quiz");
                 }
             }
 

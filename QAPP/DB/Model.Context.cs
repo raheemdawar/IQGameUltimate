@@ -13,10 +13,10 @@ namespace QAPP.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class IqwebEntities : DbContext
+    public partial class iqwebEntities : DbContext
     {
-        public IqwebEntities()
-            : base("name=IqwebEntities")
+        public iqwebEntities()
+            : base("name=iqwebEntities")
         {
         }
     
@@ -26,5 +26,6 @@ namespace QAPP.DB
         }
     
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Quiz> Quizs { get; set; }
     }
 }

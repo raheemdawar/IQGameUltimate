@@ -3,6 +3,23 @@ let questionNumber = 0;
 let score = 0;
 let totalRight = 0;
 let totalWrong = 0;
+function submitresult() {
+
+    var request = $.ajax({
+        url: "/quiz/saveresult",
+        type: "GET",
+        data: { 'name': quizName, 'correct': score }
+
+    });
+
+    request.done(function (msg) {
+
+    });
+
+    request.fail(function (jqXHR, textStatus) {
+        alert("Request failed: " + textStatus);
+    });
+}
 //generate question html
 function generateQuestion() {
 	if (questionNumber < STORE.length) {
@@ -55,6 +72,7 @@ function changeQuestionNumber() {
 	//}
 	$('.question-number').text(questionNumber + 1);
 }
+
 //increment score
 function changeScore() {
 	score++;
@@ -137,9 +155,11 @@ function renderResults() {
 		$('.question-body').html(`<div class="results correctFeedback"><h3>You're on fire!</h3><p>You got ${score} / 10</p><p>You're ready to plan your backpacking trip!</p><button type="button" class="btn btn-lg btn-outline-primary restart-quiz">Restart Quiz</button></div>`);
 	} else if (score < 8 && score >= 5) {
 		$('.question-body').html(`<div class="results correctFeedback"><h3>Almost there!</h3><p>You got ${score} / 10</p><p>Bone up on your backpacking knowledge a little more and you'll be ready to go!</p><button type="button" class="btn btn-lg btn-outline-primary restart-quiz">Restart Quiz</button></div>`);
-	} else {
-		$('.question-body').html(`<div class="results correctFeedback"><h3>You might want to stick with car camping</h3><p>You got ${score} / 10</p><p>With more camping and outdoor experience you'll be able to pass this quiz in no time</p><button type="button" class="btn btn-lg btn-outline-primary restart-quiz">Restart Quiz</button></div>`);
-	}
+    } else {
+        
+        $('.question-body').html(`<div class="results correctFeedback"><h3>You might want to stick with car camping</h3><p>You got ${score} / 10</p><p>With more camping and outdoor experience you'll be able to pass this quiz in no time</p><button  type="button" class="btn btn-lg btn-outline-primary restart-quiz">Restart Quiz</button></div>`);
+        submitresult();
+    }
 }
 //what happens when the user clicks next
 function renderNextQuestion() {
@@ -163,3 +183,4 @@ function createQuiz() {
 	renderNextQuestion();
 }
 $(createQuiz);
+

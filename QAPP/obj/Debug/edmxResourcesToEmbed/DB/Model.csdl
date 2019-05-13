@@ -9,8 +9,38 @@
     <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="isActive" Type="Boolean" />
+    <NavigationProperty Name="Quizs" Relationship="iqwebModel.FK_Quiz_Student" FromRole="Student" ToRole="Quiz" />
   </EntityType>
-  <EntityContainer Name="IqwebEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="iqwebEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Quizs" EntityType="iqwebModel.Quiz" />
+    <AssociationSet Name="FK_Quiz_Student" Association="iqwebModel.FK_Quiz_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Quiz" EntitySet="Quizs" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Quiz">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="quizname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="marks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="true" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="false" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fk_studentid" Type="Int32" />
+    <NavigationProperty Name="Student" Relationship="iqwebModel.FK_Quiz_Student" FromRole="Quiz" ToRole="Student" />
+  </EntityType>
+  <Association Name="FK_Quiz_Student">
+    <End Type="iqwebModel.Student" Role="Student" Multiplicity="0..1" />
+    <End Type="iqwebModel.Quiz" Role="Quiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Quiz">
+        <PropertyRef Name="fk_studentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
